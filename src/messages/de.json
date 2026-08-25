@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "title": "Sveta Loza — Serbisch-orthodoxe Handwerkskunst",
+    "description": "Handgefertigte Taufkerzen, Hochzeitskerzen, Svadbeni Peškir und Slava-Dekorationen aus serbisch-orthodoxer Tradition. Nehmen Sie persönlich Kontakt mit unserer Werkstatt auf."
+  },
+  "legalPages": {
+    "back": "Zurück zur Startseite",
+    "imprint": {
+      "title": "Impressum",
+      "intro": "Angaben gemäß § 5 TMG (Platzhalter — bitte vor Veröffentlichung durch echte, rechtsverbindliche Angaben ersetzen).",
+      "sections": [
+        { "heading": "Anbieter", "text": "Sveta Loza Werkstatt\nKneza Miloša 24\n11000 Beograd, Srbija" },
+        { "heading": "Kontakt", "text": "Telefon: +381 11 234 5678\nE-Mail: kontakt@svetaloza-beispiel.rs" },
+        { "heading": "Vertreten durch", "text": "[Name der/des Inhaber(s) einfügen]" },
+        { "heading": "Haftungshinweis", "text": "Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links." }
+      ]
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "intro": "Diese Seite ist ein Platzhalter und muss vor Veröffentlichung durch eine vollständige, rechtsgeprüfte Datenschutzerklärung (z. B. gemäß DSGVO) ersetzt werden.",
+      "sections": [
+        { "heading": "Kontaktformular", "text": "Bei einer Anfrage über unser Kontaktformular speichern wir die von Ihnen angegebenen Daten (Name, E-Mail, Telefon, Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage." },
+        { "heading": "Empfänger", "text": "Ihre Anfrage wird per E-Mail an unsere Werkstatt übermittelt und dort zur Angebotserstellung verwendet." },
+        { "heading": "Ihre Rechte", "text": "Sie haben jederzeit das Recht auf Auskunft, Berichtigung und Löschung der über Sie gespeicherten Daten. Kontaktieren Sie uns hierzu unter der oben genannten E-Mail-Adresse." }
+      ]
+    }
+  },
+  "skipToContent": "Zum Inhalt springen",
+  "nav": {
+    "candle": "Die Kerze",
+    "peskir": "Der Peškir",
+    "products": "Handwerk",
+    "story": "Tradition",
+    "contact": "Kontakt",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "requestButton": "Anfrage stellen"
+  },
+  "languageSwitcher": {
+    "label": "Sprache",
+    "de": "Deutsch",
+    "sr": "Српски"
+  },
+  "preloader": {
+    "line1": "Von Hand gefertigt.",
+    "line2": "Von Generation zu Generation gesegnet."
+  },
+  "hero": {
+    "eyebrow": "Sveta Loza · Werkstatt für orthodoxe Handwerkskunst",
+    "title1": "Licht,",
+    "title2": "das Tradition trägt",
+    "subtitle": "Jede Krstena Sveća wird von Hand aus reinem Bienenwachs gegossen und in Gold gebunden — ein Licht, das über Generationen hinweg Segen in die Familie trägt.",
+    "cta": "Anfrage stellen",
+    "secondaryCta": "Handwerk entdecken",
+    "scrollHint": "Scrollen, um die Kerze zu entdecken"
+  },
+  "candle": {
+    "eyebrow": "Krstena Sveća",
+    "title": "Eine Kerze, vier Bedeutungen",
+    "intro": "Beim Scrollen löst sich die Taufkerze in ihre Bestandteile auf — jedes Element trägt eine eigene, jahrhundertealte Bedeutung.",
+    "parts": {
+      "flame": {
+        "title": "Die Flamme",
+        "text": "Symbol des Heiligen Geistes und des neuen Lebens, das mit der Taufe beginnt — ein Licht, das Dunkelheit nicht kennt."
+      },
+      "wick": {
+        "title": "Der Docht",
+        "text": "Handgedreht aus reiner Baumwolle. Er trägt die Flamme und steht für den geraden, aufrechten Weg des Glaubens."
+      },
+      "wax": {
+        "title": "Das Wachs",
+        "text": "Reines Bienenwachs, von Hand gegossen und geformt — Reinheit und Hingabe, die sich in jeder Schicht wiederfinden."
+      },
+      "band": {
+        "title": "Das Goldband",
+        "text": "Von Hand mit Goldfaden umwickelt, verziert mit Weihrauch und Myrrhe — ein Zeichen von Würde und Ehrerbietung."
+      }
+    }
+  },
+  "peskir": {
+    "eyebrow": "Svadbeni Peškir",
+    "title": "Von Hand bestickt, mit Liebe geschenkt",
+    "intro": "Wochenlang von Hand bestickt, trägt jeder Peškir das Muster einer Familie — rote Rosen und zarte Vergissmeinnicht-Blüten, wie sie die serbische Volksstickerei seit Generationen ziert. Jeder Stich ist ein stilles Versprechen: Sorgfalt, Geduld und die Liebe einer Familie zu ihrem Kind.",
+    "imageAlt": "Handbestickter Peškir mit roten Rosen- und blauen Vergissmeinnicht-Motiven, Schritt für Schritt entstehend",
+    "usageTitle": "Ein Ehrenzeichen bei der Hochzeit",
+    "usageItems": [
+      {
+        "title": "Schärpe der Ehre",
+        "text": "Über die Schulter gelegt oder um den Körper gebunden, trägt der Bräutigam oder Kum den Peškir als sichtbares Zeichen der Ehre."
+      },
+      {
+        "title": "Geschenk der Familie",
+        "text": "Die Familie der Braut überreicht handbestickte Tücher an den Bräutigam, seine Familie und den Kum — ein herzliches Willkommen in der neuen Familie."
+      },
+      {
+        "title": "Zeichen des Fleißes",
+        "text": "Jeder Stich erzählt von der Hingabe der Braut — früher über Jahre für die eigene Aussteuer gestickt, heute mit derselben Liebe von uns gefertigt."
+      }
+    ],
+    "closing": "Wir sticken jeden Peškir individuell für Sie — mit Ihren Farben, Initialen und dem Segensspruch Ihrer Familie.",
+    "cta": "Ihren Peškir gestalten"
+  },
+  "products": {
+    "eyebrow": "Handwerkskunst",
+    "title": "Für jeden gesegneten Moment",
+    "subtitle": "Sechs Kategorien liturgischer und familiärer Handwerkskunst — jede von unserer Werkstatt in Handarbeit gefertigt.",
+    "categories": {
+      "baptismCandles": {
+        "title": "Taufkerzen",
+        "description": "Krstena Sveća aus reinem Bienenwachs, mit Goldband und traditioneller Verzierung — individuell für Ihr Kind gefertigt.",
+        "cta": "Anfrage stellen"
+      },
+      "weddingCandles": {
+        "title": "Hochzeitskerzen",
+        "description": "Venčane Sveće als Zwillingspaar, verbunden durch Bänder in Ihren Wunschfarben — für das Ja-Wort vor dem Altar.",
+        "cta": "Anfrage stellen"
+      },
+      "weddingTowels": {
+        "title": "Hochzeitstücher",
+        "description": "Svadbeni Peškir mit handgestickter Ornamentik, individuell in Farbe, Initialen und Muster gestaltet.",
+        "cta": "Anfrage stellen"
+      },
+      "baptismAccessories": {
+        "title": "Taufzubehör",
+        "description": "Kreuzchen, Taufhemden, Öltücher und Krizmas — liebevoll zusammengestellt für den Tag der Taufe.",
+        "cta": "Anfrage stellen"
+      },
+      "slavaDecor": {
+        "title": "Slava-Dekoration",
+        "description": "Slavski Kolač-Verzierung, Kerzen und Tischschmuck für das Fest des Schutzheiligen Ihrer Familie.",
+        "cta": "Anfrage stellen"
+      },
+      "giftware": {
+        "title": "Handgefertigte Geschenke",
+        "description": "Ikonen, Rosenkränze und gesegnete Andenken — von Hand gefertigte Geschenke für besondere Anlässe.",
+        "cta": "Anfrage stellen"
+      }
+    }
+  },
+  "craftsmanship": {
+    "eyebrow": "Unsere Werkstatt",
+    "title": "Handarbeit, die Geschichten trägt",
+    "paragraphs": [
+      "In unserer Werkstatt treffen jahrhundertealte serbisch-orthodoxe Handwerkstraditionen auf die Sorgfalt einer Familienwerkstatt. Jedes Stück entsteht von Hand — kein Fließband, keine Massenware.",
+      "Wir arbeiten mit reinem Bienenwachs, echtem Goldfaden und Seide, so wie es unsere Großmütter und Urgroßmütter taten. Jede Kerze, jedes Tuch trägt diese Geschichte weiter.",
+      "Ob Taufe, Hochzeit oder Slava — wir begleiten die wichtigsten Momente Ihrer Familie mit Stücken, die für Generationen bestehen."
+    ],
+    "stats": [
+      { "value": "3", "label": "Generationen Handwerkstradition" },
+      { "value": "100%", "label": "Handgefertigt, reines Bienenwachs" },
+      { "value": "1000+", "label": "Begleitete Familienfeste" }
+    ]
+  },
+  "trust": {
+    "title": "Warum Familien uns vertrauen",
+    "items": [
+      { "title": "Von Hand gefertigt", "text": "Jedes Stück entsteht einzeln in unserer Werkstatt — keine Massenproduktion." },
+      { "title": "Geweihte Materialien", "text": "Reines Bienenwachs, echter Goldfaden und gesegnete Symbole." },
+      { "title": "Familientradition", "text": "Wissen, das seit drei Generationen weitergegeben wird." },
+      { "title": "Versand in Europa", "text": "Sorgfältig verpackt und persönlich abgestimmt geliefert." }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Erzählen Sie uns von Ihrem Anlass",
+    "subtitle": "Ob Taufe, Hochzeit oder Slava — schreiben Sie uns, und wir erstellen gemeinsam mit Ihnen ein Angebot, das zu Ihrer Familie passt. Kein Warenkorb, kein Online-Kauf — nur ein persönliches Gespräch.",
+    "info": {
+      "title": "Unsere Werkstatt",
+      "addressLabel": "Adresse",
+      "address": "Kneza Miloša 24, 11000 Beograd, Srbija",
+      "phoneLabel": "Telefon",
+      "phone": "+381 11 234 5678",
+      "emailLabel": "E-Mail",
+      "email": "kontakt@svetaloza-beispiel.rs",
+      "hoursLabel": "Öffnungszeiten",
+      "hours": "Mo–Fr 9:00–17:00, Sa nach Vereinbarung"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Ihr vollständiger Name",
+      "email": "E-Mail",
+      "emailPlaceholder": "ihre@email.de",
+      "phone": "Telefon (optional)",
+      "phonePlaceholder": "+49 ...",
+      "category": "Ich interessiere mich für",
+      "categoryPlaceholder": "Bitte wählen",
+      "message": "Ihre Nachricht",
+      "messagePlaceholder": "Erzählen Sie uns von Ihrem Anlass, Wunschtermin und Vorstellungen …",
+      "consent": "Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert werden.",
+      "submit": "Anfrage senden",
+      "submitting": "Wird gesendet …",
+      "successTitle": "Vielen Dank!",
+      "successText": "Ihre Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von zwei Werktagen persönlich bei Ihnen.",
+      "errorTitle": "Etwas ist schiefgelaufen",
+      "errorText": "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt per E-Mail.",
+      "sendAnother": "Weitere Anfrage senden",
+      "categories": {
+        "baptismCandles": "Taufkerzen",
+        "weddingCandles": "Hochzeitskerzen",
+        "weddingTowels": "Hochzeitstücher",
+        "baptismAccessories": "Taufzubehör",
+        "slavaDecor": "Slava-Dekoration",
+        "giftware": "Handgefertigte Geschenke",
+        "other": "Sonstiges"
+      },
+      "errors": {
+        "name": "Bitte geben Sie Ihren Namen ein.",
+        "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "category": "Bitte wählen Sie eine Kategorie.",
+        "message": "Bitte beschreiben Sie kurz Ihr Anliegen.",
+        "consent": "Bitte stimmen Sie der Datenverarbeitung zu."
+      }
+    }
+  },
+  "footer": {
+    "description": "Handgefertigte serbisch-orthodoxe Kerzen, Textilien und Geschenke — mit Liebe gefertigt in unserer Familienwerkstatt.",
+    "contactTitle": "Kontakt",
+    "navTitle": "Entdecken",
+    "legalTitle": "Rechtliches",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "rights": "Alle Rechte vorbehalten."
+  }
+}
