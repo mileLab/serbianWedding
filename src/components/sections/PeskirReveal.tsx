@@ -11,9 +11,10 @@ import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { gsap, ScrollTrigger } from "@/lib/gsapClient";
+import { publicPath } from "@/lib/publicPath";
 
-const PESKIR_VIDEO_SRC = "/videos/peskir-embroidery.mp4";
-const PESKIR_VIDEO_POSTER = "/images/peskir/embroidery-07.jpg";
+const PESKIR_VIDEO_SRC = publicPath("/videos/peskir-embroidery.mp4");
+const PESKIR_VIDEO_POSTER = publicPath("/images/peskir/embroidery-07.jpg");
 
 type UsageItem = { title: string; text: string };
 

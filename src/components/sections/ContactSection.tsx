@@ -83,17 +83,24 @@ export function ContactSection() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setSubmitState("submitting");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, locale }),
-      });
-      if (!res.ok) throw new Error("request_failed");
-      setSubmitState("success");
-    } catch {
-      setSubmitState("error");
-    }
+    const categoryLabel = tForm(`categories.${data.category}`);
+    const subject = `Neue Anfrage: ${categoryLabel} - ${data.name}`;
+    const body = [
+      `Name: ${data.name}`,
+      `E-Mail: ${data.email}`,
+      `Telefon: ${data.phone || "-"}`,
+      `Kategorie: ${categoryLabel}`,
+      `Sprache: ${locale}`,
+      "",
+      data.message,
+    ].join("\n");
+
+    const mailtoUrl = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      body
+    )}`;
+
+    window.open(mailtoUrl, "_self");
+    setSubmitState("success");
   };
 
   if (submitState === "success") {

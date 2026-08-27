@@ -1,3 +1,5 @@
+import { publicPath } from "@/lib/publicPath";
+
 /**
  * Swap point for real 3D assets.
  *
@@ -19,14 +21,14 @@ export const USE_GLTF_MODELS = {
 } as const;
 
 export const MODEL_PATHS = {
-  candle: "/models/baptism-candle.glb",
-  peskir: "/models/peskir.glb",
+  candle: publicPath("/models/baptism-candle.glb"),
+  peskir: publicPath("/models/peskir.glb"),
   products: {
-    baptismCandles: "/models/product-baptism-candles.glb",
-    weddingCandles: "/models/product-wedding-candles.glb",
-    weddingTowels: "/models/product-wedding-towels.glb",
-    baptismAccessories: "/models/product-baptism-accessories.glb",
-    slavaDecor: "/models/product-slava-decor.glb",
-    giftware: "/models/product-giftware.glb",
+    baptismCandles: publicPath("/models/product-baptism-candles.glb"),
+    weddingCandles: publicPath("/models/product-wedding-candles.glb"),
+    weddingTowels: publicPath("/models/product-wedding-towels.glb"),
+    baptismAccessories: publicPath("/models/product-baptism-accessories.glb"),
+    slavaDecor: publicPath("/models/product-slava-decor.glb"),
+    giftware: publicPath("/models/product-giftware.glb"),
   },
 } as const;

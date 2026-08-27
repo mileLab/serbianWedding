@@ -4,8 +4,20 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
+const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1];
+const githubPagesBasePath =
+  process.env.GITHUB_PAGES === "true" && repoName && !repoName.endsWith(".github.io")
+    ? `/${repoName}`
+    : "";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? githubPagesBasePath;
+
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  basePath: basePath || undefined,
+  assetPrefix: basePath || undefined,
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
   },
   compiler: {
@@ -17,4 +29,3 @@ const nextConfig: NextConfig = {
 };
 
 export default withNextIntl(nextConfig);
-

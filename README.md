@@ -1,94 +1,68 @@
-# Sveta Loza — Premium 3D Landingpage
+# Sveta Loza - Static GitHub Pages Site
 
-Eine Awwwards-taugliche Kontaktseite für einen serbisch-orthodoxen Devotionalien-Shop
-(Taufkerzen, Hochzeitskerzen, Svadbeni Peškir, Taufzubehör, Slava-Dekoration,
-handgefertigte Geschenke). **Reine Kontaktaufnahme — kein Warenkorb, kein Checkout.**
+A single-page contact site for Serbian Orthodox handcrafted devotional goods:
+baptism candles, wedding candles, Svadbeni Peskir, baptism accessories, Slava
+decor, and handmade gifts.
 
-Gebaut mit Next.js (App Router), React, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis
-und React Three Fiber / drei.
+Built with Next.js App Router, React, Tailwind CSS v4, GSAP + ScrollTrigger,
+Lenis, and React Three Fiber / drei.
 
-## Erste Schritte
+## Local Development
 
 ```bash
 npm install
-cp .env.local.example .env.local   # siehe unten
 npm run dev
 ```
 
-Öffne [http://localhost:3000](http://localhost:3000) — die Seite leitet automatisch
-auf `/de` weiter (Sprachumschalter oben rechts für `/sr`).
+Open [http://localhost:3000](http://localhost:3000). The default German landing
+page is available at `/`, with static language variants at `/de/` and `/sr/`.
 
-## Kontaktformular konfigurieren (Resend)
+## GitHub Pages
 
-Das Formular sendet Anfragen über [Resend](https://resend.com) per E-Mail.
-
-1. Kostenlosen Account bei Resend erstellen, API-Key generieren.
-2. In `.env.local` eintragen:
-   ```
-   RESEND_API_KEY=re_...
-   CONTACT_TO_EMAIL=kontakt@ihre-domain.de
-   ```
-3. Für den produktiven Einsatz empfiehlt sich eine eigene, in Resend verifizierte
-   Domain (`CONTACT_FROM_EMAIL`) statt des Test-Absenders `onboarding@resend.dev`.
-
-Ohne gesetzten `RESEND_API_KEY`/`CONTACT_TO_EMAIL` gibt die API-Route `503
-EMAIL_NOT_CONFIGURED` zurück und loggt die Anfrage serverseitig — die Seite bleibt
-also lauffähig, versendet aber keine E-Mails.
-
-## Inhalte anpassen
-
-- **Texte (DE/SR):** `src/messages/de.json`, `src/messages/sr.json`
-- **Shop-/Kontaktdaten:** `src/lib/constants.ts`
-- **Farben, Typografie:** `src/app/globals.css` (`@theme`-Block), Fonts in
-  `src/app/[locale]/layout.tsx`
-
-Alle aktuell hinterlegten Kontaktdaten (Adresse, Telefon, E-Mail) sind Platzhalter
-und müssen vor Livegang ersetzt werden.
-
-## Echte 3D-Modelle einbinden
-
-Aktuell laufen alle 3D-Szenen (Taufkerze, Peškir, Produktplattformen) mit sauber
-gebauten, rein prozeduralen Geometrien — kein externer Asset-Download nötig, die
-Seite funktioniert sofort ohne `.glb`-Dateien.
-
-Sobald echte 3D-Modelle von einem Artist vorliegen: `public/models/README.md`
-befolgen und die Flags in `src/components/three/modelConfig.ts` umschalten.
-
-## Rechtliches
-
-`/impressum` und `/datenschutz` enthalten Platzhaltertexte
-(`legalPages` in den Messages-Dateien) und müssen vor Veröffentlichung durch
-rechtsgeprüfte Inhalte ersetzt werden (Impressumspflicht, DSGVO).
-
-## Projektstruktur
-
-```
-src/
-  app/[locale]/        Next.js App Router Seiten (next-intl Locale-Routing)
-  app/api/contact/      Kontaktformular API-Route
-  components/layout/    Header, Footer, Smooth-Scroll (Lenis), Canvas-Layer
-  components/sections/  Hero, Peškir-Reveal, Produkte, Story, Kontakt, ...
-  components/three/     Prozedurale 3D-Szenen (Kerze, Peškir, Produkte, Licht)
-  components/ui/        Wiederverwendbare UI-Bausteine
-  lib/                  Konstanten, Validierung (zod), E-Mail-Templates, GSAP-Setup
-  i18n/, messages/       next-intl Konfiguration & Übersetzungen (de, sr)
-```
-
-## Performance & Zugänglichkeit
-
-- Ein einziger, fixed-position R3F `<Canvas>` (dynamisch importiert, `ssr:false`)
-  wird von allen Sektionen über drei's `<View>`-Mehrfachansicht geteilt — vermeidet
-  mehrere teure WebGL-Kontexte.
-- `prefers-reduced-motion` deaktiviert Lenis, GSAP-ScrollTrigger-Animationen und
-  die komplette 3D-Ebene zugunsten eines statischen, weiterhin voll nutzbaren Layouts.
-- `PerformanceMonitor`/`AdaptiveDpr` passen die Renderqualität automatisch an die
-  Gerätleistung an.
-- Schriften werden über `next/font` selbst gehostet (kein Render-blockierender
-  Google-Fonts-Request).
-
-## Build
+This project is configured for static export with `output: "export"`. Running
+the build creates the `out/` folder that GitHub Pages serves.
 
 ```bash
 npm run build
 npm run lint
+```
+
+The workflow in `.github/workflows/deploy-pages.yml` builds and deploys `out/`
+on every push to `main`.
+
+For a normal project page such as `https://<user>.github.io/serbianWedding/`,
+the workflow automatically sets the correct base path from the repository name.
+For a custom domain or a `<user>.github.io` repository, the base path stays empty.
+
+## Contact Form
+
+GitHub Pages cannot run server API routes. The contact form therefore validates
+in the browser and opens a prefilled email to the address configured in
+`src/lib/constants.ts`.
+
+If you need server-side email delivery later, deploy to a platform that supports
+Next.js route handlers or connect the form to an external form service.
+
+## Content
+
+- Text: `src/messages/de.json`, `src/messages/sr.json`
+- Contact details: `src/lib/constants.ts`
+- Colors and typography: `src/app/globals.css`, `src/app/layout.tsx`
+- Product media: `public/images`, `public/videos`, `public/models`
+
+All current contact and legal details are placeholders and should be replaced
+before publishing.
+
+## Structure
+
+```text
+src/
+  app/                 Static root page, metadata routes, global layout
+  app/[locale]/        Static DE/SR language pages
+  components/layout/   Header, footer, smooth scrolling, app shell
+  components/sections/ Hero, peskir reveal, products, story, contact
+  components/three/    Procedural 3D scenes
+  components/ui/       Shared UI primitives
+  i18n/, messages/     next-intl routing and translations
+  lib/                 Constants, validation, public-path helpers
 ```
