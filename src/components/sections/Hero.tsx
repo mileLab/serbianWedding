@@ -65,7 +65,7 @@ export function Hero() {
           trigger: wrapper,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1,
+          scrub: 1.5,
           pin: stageRef.current,
           onUpdate: (self) => {
             if (video && video.duration) {
@@ -186,7 +186,7 @@ export function Hero() {
   }
 
   return (
-    <div ref={wrapperRef} id="hero" className="relative" style={{ height: "500vh" }}>
+    <div ref={wrapperRef} id="hero" className="relative" style={{ height: "1200vh" }}>
       <div ref={stageRef} className="relative h-screen w-full overflow-hidden bg-grain">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,63,0.12),transparent_60%)]" />
 
