@@ -10,6 +10,7 @@ import { NAV_SECTION_IDS } from "@/lib/constants";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { gsap, ScrollTrigger } from "@/lib/gsapClient";
 import { publicPath } from "@/lib/publicPath";
 
@@ -21,6 +22,8 @@ type UsageItem = { title: string; text: string };
 export function PeskirReveal() {
   const t = useTranslations("peskir");
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const simplified = reducedMotion || isMobile;
   const scrollToSection = useScrollToSection();
 
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -34,7 +37,7 @@ export function PeskirReveal() {
   const usageItems = t.raw("usageItems") as UsageItem[];
 
   useIsomorphicLayoutEffect(() => {
-    if (reducedMotion) return;
+    if (simplified) return;
     const wrapper = wrapperRef.current;
     const video = videoRef.current;
     if (!wrapper) return;
@@ -85,7 +88,7 @@ export function PeskirReveal() {
         if (st.trigger === wrapper) st.kill();
       });
     };
-  }, [reducedMotion]);
+  }, [simplified]);
 
   const renderVideoLayer = (autoPlay = false) => (
     <video
@@ -102,7 +105,7 @@ export function PeskirReveal() {
     />
   );
 
-  if (reducedMotion) {
+  if (simplified) {
     return (
       <section id="peskir" className="relative overflow-hidden bg-ink-950 py-24 md:py-32">
         <div className="section-container grid gap-12 md:grid-cols-2 md:items-start md:gap-16">

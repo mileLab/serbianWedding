@@ -8,6 +8,7 @@ import { NAV_SECTION_IDS } from "@/lib/constants";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { gsap, ScrollTrigger } from "@/lib/gsapClient";
 import { publicPath } from "@/lib/publicPath";
 
@@ -27,6 +28,8 @@ export function Hero() {
   const tCandle = useTranslations("candle");
   const scrollToSection = useScrollToSection();
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const simplified = reducedMotion || isMobile;
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -46,7 +49,7 @@ export function Hero() {
   );
 
   useIsomorphicLayoutEffect(() => {
-    if (reducedMotion) return;
+    if (simplified) return;
     const wrapper = wrapperRef.current;
     const video = videoRef.current;
     if (!wrapper) return;
@@ -90,10 +93,100 @@ export function Hero() {
         if (st.trigger === wrapper) st.kill();
       });
     };
-  }, [reducedMotion]);
+  }, [simplified]);
+
+  const heroText = (
+    <div className="flex flex-col items-center gap-6 text-center">
+      <span className="text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
+        {t("eyebrow")}
+      </span>
+      <h1 className="font-display text-5xl leading-[1.05] text-cream-50 sm:text-7xl md:text-8xl">
+        <RevealText as="span" className="block">
+          {t("title1")}
+        </RevealText>
+        <RevealText as="span" className="block" wordClassName="text-gold-gradient" delay={0.15}>
+          {t("title2")}
+        </RevealText>
+      </h1>
+      <p className="max-w-xl text-balance text-base leading-relaxed text-cream-100/70 sm:text-lg">
+        {t("subtitle")}
+      </p>
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
+        <ButtonLink
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection(NAV_SECTION_IDS.contact);
+          }}
+        >
+          {t("cta")}
+        </ButtonLink>
+        <ButtonLink
+          variant="ghost"
+          href="#products"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection(NAV_SECTION_IDS.products);
+          }}
+        >
+          {t("secondaryCta")}
+        </ButtonLink>
+      </div>
+    </div>
+  );
+
+  if (simplified) {
+    return (
+      <section id="hero" className="relative overflow-hidden bg-grain">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,63,0.12),transparent_60%)]"
+          aria-hidden="true"
+        />
+
+        <div className="section-container relative z-10 flex min-h-[100dvh] flex-col items-center justify-center py-28">
+          {heroText}
+        </div>
+
+        <div className="section-container relative z-10 grid gap-10 pb-24 md:grid-cols-2 md:items-center md:gap-16">
+          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-sm shadow-2xl shadow-black/40">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              src={CANDLE_VIDEO_SRC}
+              poster={CANDLE_VIDEO_POSTER}
+              aria-label={tCandle("title")}
+              muted
+              playsInline
+              autoPlay
+              loop
+              preload="auto"
+            />
+          </div>
+
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
+                {tCandle("eyebrow")}
+              </span>
+              <h2 className="font-display text-3xl text-cream-50 sm:text-4xl">{tCandle("title")}</h2>
+              <p className="text-base leading-relaxed text-cream-100/70">{tCandle("intro")}</p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              {callouts.map((c) => (
+                <div key={c.key} className="flex flex-col gap-1.5 border-l border-gold-300/30 pl-4">
+                  <span className="font-display text-lg text-gold-200">{c.title}</span>
+                  <p className="text-sm leading-relaxed text-cream-100/70">{c.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div ref={wrapperRef} id="hero" className="relative" style={{ height: reducedMotion ? "100vh" : "500vh" }}>
+    <div ref={wrapperRef} id="hero" className="relative" style={{ height: "500vh" }}>
       <div ref={stageRef} className="relative h-screen w-full overflow-hidden bg-grain">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,63,0.12),transparent_60%)]" />
 
@@ -105,49 +198,11 @@ export function Hero() {
           aria-label={tCandle("title")}
           muted
           playsInline
-          autoPlay={reducedMotion}
-          loop={reducedMotion}
           preload="auto"
         />
 
         <div className="section-container relative z-10 flex h-full flex-col items-center justify-center">
-          <div ref={heroTextRef} className="flex flex-col items-center gap-6 text-center">
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
-              {t("eyebrow")}
-            </span>
-            <h1 className="font-display text-5xl leading-[1.05] text-cream-50 sm:text-7xl md:text-8xl">
-              <RevealText as="span" className="block">
-                {t("title1")}
-              </RevealText>
-              <RevealText as="span" className="block" wordClassName="text-gold-gradient" delay={0.15}>
-                {t("title2")}
-              </RevealText>
-            </h1>
-            <p className="max-w-xl text-balance text-base leading-relaxed text-cream-100/70 sm:text-lg">
-              {t("subtitle")}
-            </p>
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-              <ButtonLink
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(NAV_SECTION_IDS.contact);
-                }}
-              >
-                {t("cta")}
-              </ButtonLink>
-              <ButtonLink
-                variant="ghost"
-                href="#products"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(NAV_SECTION_IDS.products);
-                }}
-              >
-                {t("secondaryCta")}
-              </ButtonLink>
-            </div>
-          </div>
+          <div ref={heroTextRef}>{heroText}</div>
 
           <div
             ref={detailHeaderRef}
@@ -174,11 +229,9 @@ export function Hero() {
           ))}
         </div>
 
-        {!reducedMotion && (
-          <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-cream-100/40">
-            {t("scrollHint")}
-          </div>
-        )}
+        <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-cream-100/40">
+          {t("scrollHint")}
+        </div>
       </div>
     </div>
   );
