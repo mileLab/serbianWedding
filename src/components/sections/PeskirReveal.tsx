@@ -87,7 +87,7 @@ export function PeskirReveal() {
     };
   }, [reducedMotion]);
 
-  const videoLayer = (
+  const renderVideoLayer = (autoPlay = false) => (
     <video
       ref={videoRef}
       className="absolute inset-0 h-full w-full object-cover"
@@ -96,6 +96,8 @@ export function PeskirReveal() {
       aria-label={t("imageAlt")}
       muted
       playsInline
+      autoPlay={autoPlay}
+      loop={autoPlay}
       preload="auto"
     />
   );
@@ -105,7 +107,7 @@ export function PeskirReveal() {
       <section id="peskir" className="relative overflow-hidden bg-ink-950 py-24 md:py-32">
         <div className="section-container grid gap-12 md:grid-cols-2 md:items-start md:gap-16">
           <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-sm shadow-2xl shadow-black/40 md:sticky md:top-28">
-            {videoLayer}
+            {renderVideoLayer(true)}
           </div>
 
           <div className="flex flex-col gap-10">
@@ -164,7 +166,7 @@ export function PeskirReveal() {
         />
 
         <div className="absolute right-[-5%] top-1/2 h-[62vh] w-[72vw] -translate-y-1/2 overflow-hidden rounded-sm shadow-2xl shadow-black/50 md:right-[2%] md:w-[52vw]">
-          {videoLayer}
+          {renderVideoLayer()}
         </div>
 
         <div className="section-container relative z-10">
