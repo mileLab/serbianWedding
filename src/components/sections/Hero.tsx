@@ -65,11 +65,15 @@ export function Hero() {
           trigger: wrapper,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.5,
+          scrub: 0.4,
+          fastScrollEnd: true,
           pin: stageRef.current,
+          anticipatePin: 1,
           onUpdate: (self) => {
-            if (video && video.duration) {
-              video.currentTime = self.progress * video.duration;
+            if (!video || !Number.isFinite(video.duration)) return;
+            const targetTime = self.progress * video.duration;
+            if (Math.abs(video.currentTime - targetTime) > 0.01) {
+              video.currentTime = targetTime;
             }
           },
         },
@@ -143,7 +147,7 @@ export function Hero() {
           aria-hidden="true"
         />
 
-        <div className="section-container relative z-10 flex min-h-[100dvh] flex-col items-center justify-center py-28">
+        <div className="section-container relative z-10 flex min-h-dvh flex-col items-center justify-center py-28">
           {heroText}
         </div>
 
@@ -186,7 +190,7 @@ export function Hero() {
   }
 
   return (
-    <div ref={wrapperRef} id="hero" className="relative" style={{ height: "1200vh" }}>
+    <div ref={wrapperRef} id="hero" className="relative" style={{ height: "600vh" }}>
       <div ref={stageRef} className="relative h-screen w-full overflow-hidden bg-grain">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,63,0.12),transparent_60%)]" />
 
