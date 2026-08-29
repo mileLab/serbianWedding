@@ -14,6 +14,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? githubPagesBasePath;
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
+  allowedDevOrigins: ["192.168.0.17"],
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
   env: {

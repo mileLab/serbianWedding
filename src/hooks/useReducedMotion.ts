@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 
 export function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    // Media query state is unknowable during SSR; this one-time sync on
-    // mount is the earliest point the real value can be read.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // Media query state is unknowable during SSR; syncing in a layout effect
+    // (not a plain effect) resolves the real value before paint, so it lands
+    // in the same pre-paint commit as consumers' own layout effects and
+    // avoids a flash of the wrong (desktop) branch on mobile.
     setReduced(query.matches);
     const handler = (event: MediaQueryListEvent) => setReduced(event.matches);
     query.addEventListener("change", handler);
