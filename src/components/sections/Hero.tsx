@@ -34,6 +34,7 @@ export function Hero() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
+  const scrimRef = useRef<HTMLDivElement>(null);
   const detailHeaderRef = useRef<HTMLDivElement>(null);
   const calloutRefs = useRef<Array<HTMLDivElement | null>>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -80,6 +81,7 @@ export function Hero() {
       });
 
       tl.to(heroTextRef.current, { opacity: 0, y: -40, duration: 0.5 }, 0)
+        .to(scrimRef.current, { opacity: 0, duration: 0.5 }, 0)
         .to(detailHeaderRef.current, { opacity: 1, y: 0, duration: 0.4 }, 0.35)
         .to(detailHeaderRef.current, { opacity: 0, duration: 0.3 }, 3.6);
 
@@ -87,7 +89,7 @@ export function Hero() {
         if (!el) return;
         const start = 0.9 + i * 0.8;
         tl.to(el, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, start)
-          .to(el, { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, start + 0.6);
+          .to(el, { opacity: 0, y: -16, duration: 0.3, ease: "power2.out" }, start + 0.6);
       });
     }, wrapper);
 
@@ -203,6 +205,12 @@ export function Hero() {
           muted
           playsInline
           preload="auto"
+        />
+
+        <div
+          ref={scrimRef}
+          className="pointer-events-none absolute inset-0 z-[5] bg-[radial-gradient(ellipse_at_center,rgba(10,8,6,0.8),transparent_70%)]"
+          aria-hidden="true"
         />
 
         <div className="section-container relative z-10 flex h-full flex-col items-center justify-center">

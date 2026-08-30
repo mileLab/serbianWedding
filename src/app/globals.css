@@ -49,20 +49,6 @@
   --color-wine-500: var(--color-wine-500);
   --color-wine-600: var(--color-wine-600);
   --color-wine-700: var(--color-wine-700);
-
-  --animate-flicker: flicker 3.2s ease-in-out infinite;
-  --animate-float-slow: float-slow 7s ease-in-out infinite;
-
-  @keyframes flicker {
-    0%, 100% { opacity: 1; transform: scaleY(1) translateY(0); }
-    45% { opacity: 0.92; transform: scaleY(0.97) translateY(0.5px); }
-    55% { opacity: 1; transform: scaleY(1.03) translateY(-0.5px); }
-  }
-
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-14px); }
-  }
 }
 
 html {
@@ -154,11 +140,6 @@ body {
   .section-container {
     padding-inline: 5rem;
   }
-}
-
-.reduced-motion-static {
-  animation: none !important;
-  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

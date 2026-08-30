@@ -74,7 +74,7 @@ export function PeskirReveal() {
         const start = 0.9 + i * 0.8;
         tl.to(el, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, start).to(
           el,
-          { opacity: 0, y: -12, duration: 0.3, ease: "power2.in" },
+          { opacity: 0, y: -12, duration: 0.3, ease: "power2.out" },
           start + 0.6
         );
       });

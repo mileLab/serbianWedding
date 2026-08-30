@@ -30,13 +30,13 @@ function ProductCard({ category }: { category: ProductCategoryKey }) {
   return (
     <div
       data-reveal-item
-      className="group flex flex-col overflow-hidden rounded-2xl border border-cream-100/[0.08] bg-cream-100/[0.02] transition-colors hover:border-gold-400/40"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-cream-100/[0.08] bg-cream-100/[0.02] transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:border-gold-400/40"
     >
       <div className="relative h-56 w-full overflow-hidden bg-[radial-gradient(ellipse_at_center,rgba(212,168,63,0.1),transparent_70%)] sm:h-64">
         <img
           src={CATEGORY_IMAGES[category]}
           alt={t("title")}
-          className={`h-full w-full transition-transform duration-500 group-hover:scale-105 ${
+          className={`h-full w-full transition-transform duration-500 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-105 ${
             isPortrait ? "object-contain" : "object-cover"
           }`}
           loading="lazy"
@@ -50,10 +50,13 @@ function ProductCard({ category }: { category: ProductCategoryKey }) {
             requestCategory(category);
             scrollToSection(NAV_SECTION_IDS.contact);
           }}
-          className="mt-2 inline-flex items-center gap-2 self-start text-xs font-medium uppercase tracking-[0.2em] text-gold-300 transition-colors hover:text-gold-200"
+          className="mt-2 inline-flex items-center gap-2 self-start text-xs font-medium uppercase tracking-[0.2em] text-gold-300 transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:text-gold-200"
         >
           {t("cta")}
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+          <span
+            aria-hidden="true"
+            className="transition-transform [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1"
+          >
             →
           </span>
         </button>

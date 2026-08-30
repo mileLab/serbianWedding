@@ -6,6 +6,8 @@ import { gsap } from "@/lib/gsapClient";
 import { useLenis } from "@/components/layout/SmoothScrollProvider";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
+const SEEN_KEY = "sveta-loza:preloader-seen";
+
 export function Preloader() {
   const t = useTranslations("preloader");
   const [visible, setVisible] = useState(true);
@@ -15,17 +17,20 @@ export function Preloader() {
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    lenisRef.current?.stop();
+    const alreadySeen = window.sessionStorage.getItem(SEEN_KEY) === "1";
 
-    if (reducedMotion) {
-      document.body.style.overflow = "";
-      // Reduced-motion preference can only be known client-side; this one-time
-      // sync render is unavoidable (no server-rendered equivalent exists).
+    if (reducedMotion || alreadySeen) {
+      // Reduced-motion preference (and prior-visit state) can only be known
+      // client-side; this one-time sync render is unavoidable (no
+      // server-rendered equivalent exists).
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(false);
       return;
     }
+
+    document.body.style.overflow = "hidden";
+    lenisRef.current?.stop();
+    window.sessionStorage.setItem(SEEN_KEY, "1");
 
     const path = pathRef.current;
     const length = path?.getTotalLength() ?? 0;
