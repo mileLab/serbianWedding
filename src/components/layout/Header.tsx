@@ -99,7 +99,7 @@ export function Header() {
 
       <div
         className={clsx(
-          "overflow-hidden border-t border-cream-100/[0.06] bg-ink-950/95 backdrop-blur-md transition-[clip-path] duration-300 ease-out lg:hidden",
+          "absolute inset-x-0 top-full overflow-hidden border-t border-cream-100/[0.06] bg-ink-950/95 backdrop-blur-md transition-[clip-path] duration-300 ease-out lg:hidden",
           menuOpen ? "[clip-path:inset(0_0_0%_0)]" : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
         )}
       >
