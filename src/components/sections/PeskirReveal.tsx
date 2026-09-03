@@ -11,7 +11,7 @@ import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { gsap, ScrollTrigger } from "@/lib/gsapClient";
+import { gsap } from "@/lib/gsapClient";
 import { publicPath } from "@/lib/publicPath";
 
 const PESKIR_VIDEO_SRC = publicPath("/videos/peskir-embroidery.mp4");
@@ -28,10 +28,8 @@ export function PeskirReveal() {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const introRef = useRef<HTMLDivElement>(null);
-  const detailHeaderRef = useRef<HTMLHeadingElement>(null);
-  const finalCtaRef = useRef<HTMLDivElement>(null);
   const calloutRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const finalRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const usageItems = t.raw("usageItems") as UsageItem[];
@@ -56,38 +54,22 @@ export function PeskirReveal() {
           scrub: 1,
           pin: stageRef.current,
           onUpdate: (self) => {
-            if (video && video.duration) {
+            if (video && Number.isFinite(video.duration)) {
               video.currentTime = self.progress * video.duration;
             }
           },
         },
       });
 
-      tl.to(introRef.current, { opacity: 0, y: -24, duration: 0.5 }, 0).to(
-        detailHeaderRef.current,
-        { opacity: 1, y: 0, duration: 0.4 },
-        0.4
-      );
-
-      calloutRefs.current.forEach((el, i) => {
+      const beats = [...calloutRefs.current, finalRef.current];
+      const segment = 1 / (beats.length + 1);
+      beats.forEach((el, i) => {
         if (!el) return;
-        const start = 0.9 + i * 0.8;
-        tl.to(el, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, start).to(
-          el,
-          { opacity: 0, y: -12, duration: 0.3, ease: "power2.out" },
-          start + 0.6
-        );
+        tl.to(el, { opacity: 1, y: 0, duration: segment * 0.6, ease: "power2.out" }, segment * (i + 1));
       });
-
-      tl.to(finalCtaRef.current, { opacity: 1, y: 0, duration: 0.5 }, 3.3);
     }, wrapper);
 
-    return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.trigger === wrapper) st.kill();
-      });
-    };
+    return () => ctx.revert();
   }, [simplified]);
 
   const renderVideoLayer = (autoPlay = false) => (
@@ -161,20 +143,18 @@ export function PeskirReveal() {
   }
 
   return (
-    <div ref={wrapperRef} id="peskir" className="relative" style={{ height: "420vh" }}>
+    // Trigger must stay a plain, non-overflow-hidden div — overflow-hidden here
+    // can break GSAP's pin-spacer. Clipping lives on the pinned stage instead.
+    <div ref={wrapperRef} id="peskir" className="relative" style={{ height: "210vh" }}>
       <div ref={stageRef} className="relative flex h-screen w-full items-center overflow-hidden bg-ink-950">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,63,0.08),transparent_60%)]"
           aria-hidden="true"
         />
 
-        <div className="absolute right-[-5%] top-1/2 h-[62vh] w-[72vw] -translate-y-1/2 overflow-hidden rounded-sm shadow-2xl shadow-black/50 md:right-[2%] md:w-[52vw]">
-          {renderVideoLayer()}
-        </div>
-
-        <div className="section-container relative z-10">
+        <div className="section-container relative z-10 grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
           <div className="flex max-w-xl flex-col gap-6">
-            <div ref={introRef} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
               <span className="text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
                 {t("eyebrow")}
               </span>
@@ -182,46 +162,44 @@ export function PeskirReveal() {
                 {t("title")}
               </h2>
               <GoldDivider className="justify-start" />
-              <p className="text-base leading-relaxed text-cream-100/75 sm:text-lg">{t("intro")}</p>
+              <RevealText as="p" className="block text-base leading-relaxed text-cream-100/75 sm:text-lg">
+                {t("intro")}
+              </RevealText>
             </div>
 
-            <h3
-              ref={detailHeaderRef}
-              className="translate-y-4 font-display text-2xl text-cream-50 opacity-0 sm:text-3xl"
-            >
-              {t("usageTitle")}
-            </h3>
+            <h3 className="font-display text-2xl text-cream-50 sm:text-3xl">{t("usageTitle")}</h3>
 
-            <div className="relative min-h-36 sm:min-h-28">
+            <div className="flex flex-col gap-5">
               {usageItems.map((item, i) => (
                 <div
                   key={item.title}
                   ref={(el) => {
                     calloutRefs.current[i] = el;
                   }}
-                  className="absolute inset-0 flex translate-y-3 flex-col gap-1.5 opacity-0"
+                  className="flex translate-y-3 flex-col gap-1.5 opacity-0"
                 >
                   <span className="font-display text-xl text-gold-200">{item.title}</span>
                   <p className="text-sm leading-relaxed text-cream-100/70 sm:text-base">{item.text}</p>
                 </div>
               ))}
-
-              <div
-                ref={finalCtaRef}
-                className="absolute inset-0 flex translate-y-3 flex-col items-start gap-4 opacity-0"
-              >
-                <p className="text-sm leading-relaxed text-cream-100/70 sm:text-base">{t("closing")}</p>
-                <ButtonLink
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(NAV_SECTION_IDS.contact);
-                  }}
-                >
-                  {t("cta")}
-                </ButtonLink>
-              </div>
             </div>
+
+            <div ref={finalRef} className="flex translate-y-3 flex-col items-start gap-4 opacity-0">
+              <p className="text-sm leading-relaxed text-cream-100/70 sm:text-base">{t("closing")}</p>
+              <ButtonLink
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(NAV_SECTION_IDS.contact);
+                }}
+              >
+                {t("cta")}
+              </ButtonLink>
+            </div>
+          </div>
+
+          <div className="relative mx-auto aspect-[4/5] h-[64vh] w-auto max-w-full overflow-hidden rounded-sm shadow-2xl shadow-black/50 lg:h-[74vh]">
+            {renderVideoLayer()}
           </div>
         </div>
       </div>
